@@ -1,0 +1,11 @@
+{
+  "name": "quizappdata",
+  "version": "1.0.0",
+  "description": "Data model for Quiz App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stuart Rendall",
+  "license": "ISC"
+}
