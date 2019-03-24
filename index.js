@@ -83,6 +83,7 @@ const quizdata =[{
 				}
 			]
 		},
+
     {
 			"title": "Quiz 4",
 			"state": "completed",
@@ -106,16 +107,32 @@ const quizdata =[{
     }
 
 	]
+
+const getQuiz = (title) => {
+	return quizdata.filter((quiz)=>{
+  	return quiz.title === title
+	}, title);
+};
+
 const completedQuizzes = quizdata.filter((quiz)=>{
-  return quiz.state ==="completed"
+  return quiz.state === "completed"
 });
 
 const remainingQuizzes = quizdata.filter((quiz)=>{
-  return quiz.state !=="completed"
+  return quiz.state !== "completed"
 });
 
 const titlesAndState = quizdata.map((quiz) =>{
   return [quiz.title, quiz.state, quiz.score, quiz.questions.length]
+})
+
+const titlesAndStateObj = quizdata.map((quiz) =>{
+	return {
+		title:quiz.title,
+		state:quiz.state,
+		correct:quiz.score,
+		num_questions:quiz.questions.length
+	}
 })
 
 const averageScore = completedQuizzes.reduce((acc, value) =>{
@@ -127,8 +144,11 @@ const averageScore = completedQuizzes.reduce((acc, value) =>{
 },0) / completedQuizzes.length *100;
 
 console.log("All Data\n", quizdata);
+console.log("\nQuiz 1 Data\n", getQuiz("Quiz 1"));
+console.log("\nQuiz 2 questions\n",getQuiz("Quiz 2")[0].questions);
 console.log("\ncompleted quizzes\n", completedQuizzes);
 console.log("\n",completedQuizzes.length, "completed quizzes");
 console.log("\n",remainingQuizzes.length, "remaining quizzes");
 console.log("\nSummary\n", titlesAndState);
+console.log("\nSummary as objects\n", titlesAndStateObj);
 console.log("\nAverage Score\n", averageScore,"%");
