@@ -1,12 +1,13 @@
 {
 	"appView": {
 		"page": "quiz",
-		"title": "Quiz 2",
+		"quizid": "Quiz 2",
 		"currentQuestion": 1,
 		"hintUsed": false
 	},
 	"quizzes": [{
-			"title": "Quiz 1",
+			"id": "Quiz 1",
+			"title": "Shapes",
 			"state": "completed",
 			"numberOfQuestionsAttempted": 3,
 			"score": 2,
@@ -22,7 +23,7 @@
 					"id": 2,
 					"question text": "how many sides to a square?",
 					"image": "square.png",
-					"hint": "some hint text - try 4 sides",
+					"hint": "some hint text",
 					"answer": "4",
 					"wrong_answers": ["3", "2", "5"]
 				},
@@ -37,7 +38,8 @@
 			]
 		},
 		{
-			"title": "Quiz 2",
+			"id": "Quiz 2",
+			"title": "Arithmetic",
 			"state": "started",
 			"numberOfQuestionsAttempted": 1,
 			"score": 1,
@@ -68,7 +70,8 @@
 			]
 		},
 		{
-			"title": "Quiz 3",
+			"id": "Quiz 3",
+			"title": "Randoms",
 			"state": "unattempted",
 			"numberOfQuestionsAttempted": 0,
 			"score": 0,
@@ -84,11 +87,36 @@
 					"id": 2,
 					"question text": "orange is a ?",
 					"image": "orange.png",
-					"hint": "some hint text - try 4 sides",
+					"hint": "some hint text",
 					"answer": "colour",
-					"wrong_answers": ["vegetable"]
+					"wrong_answers": ["color", "vegetable"]
 				}
 			]
+		},
+
+		{
+			"id": "Quiz 4",
+			"title": "Another Quiz title",
+			"state": "completed",
+			"numberOfQuestionsAttempted": 6,
+			"score": 5,
+			"questions": ["", "", "", "", "", ""]
+		},
+		{
+			"id": "Quiz 5",
+			"title": "Another Quiz title",
+			"state": "completed",
+			"numberOfQuestionsAttempted": 10,
+			"score": 7,
+			"questions": ["", "", "", "", "", "", "", "", "", ""]
+		},
+		{
+			"id": "Quiz 6",
+			"title": "Another Quiz title",
+			"state": "completed",
+			"numberOfQuestionsAttempted": 5,
+			"score": 5,
+			"questions": ["", "", "", "", ""]
 		}
 	]
 }

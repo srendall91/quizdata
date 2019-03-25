@@ -1,5 +1,38 @@
+// Web App Development module
+// assignment 1
+// Data design for Quiz App
+// Stuart Rendall 25/03/2019
+
+// note that, there is no functionality to give a results summary at the end of quiz
+// e.g. identifying correct/incorrect answers, returning to icorrect questions etc.
+// and anticipated use is to progress linearly through each chosen quiz, with only
+// the option to pause and return to it later, or restart once finished.
+// the data model is adequate for this purpose.
+
+// data required for app.props
+// page: 1 of 4: selectQuiz, question, hint, result
+// quizid: current quiz (needed for question, hint and result pages)
+// currentQuestion: current question ( needed for question and hint pages)
+// hintUsed: flag to allow only single use of hint page (question page only)
+const appState={
+	page: "quiz",
+	quizid: "Quiz 2",
+	currentQuestion: 1,
+	hintUsed: false
+}
+
+// complete data set for all quizzes
+// array of quizzes containing array of questions
+// additional user data stored regarding progress through quizzes:
+// state: indicates whether quiz has been not been started, started or completed
+// numberOfQuestionsAttempted: facilitates returning to quiz later
+// score: number of correct answers so far
+// (if it were expected that there may be more than one correct answer for
+// a question, this would require that 'answer' be an array of correct answers
+// for all questions)
 const quizdata =[{
-			"title": "Quiz 1",
+			"id": "Quiz 1",
+			"title" : "Shapes",
 			"state": "completed",
 			"numberOfQuestionsAttempted": 3,
 			"score": 2,
@@ -15,7 +48,7 @@ const quizdata =[{
 					"id": 2,
 					"question text": "how many sides to a square?",
 					"image": "square.png",
-					"hint": "some hint text - try 4 sides",
+					"hint": "some hint text",
 					"answer": "4",
 					"wrong_answers": ["3", "2", "5"]
 				},
@@ -30,7 +63,8 @@ const quizdata =[{
 			]
 		},
 		{
-			"title": "Quiz 2",
+			"id": "Quiz 2",
+			"title" : "Arithmetic",
 			"state": "started",
 			"numberOfQuestionsAttempted": 1,
 			"score": 1,
@@ -61,7 +95,8 @@ const quizdata =[{
 			]
 		},
 		{
-			"title": "Quiz 3",
+			"id": "Quiz 3",
+			"title" : "Randoms",
 			"state": "unattempted",
 			"numberOfQuestionsAttempted": 0,
 			"score": 0,
@@ -77,7 +112,7 @@ const quizdata =[{
 					"id": 2,
 					"question text": "orange is a ?",
 					"image": "orange.png",
-					"hint": "some hint text - try 4 sides",
+					"hint": "some hint text",
 					"answer": "colour",
 					"wrong_answers": ["color", "vegetable"]
 				}
@@ -85,21 +120,24 @@ const quizdata =[{
 		},
 
     {
-			"title": "Quiz 4",
+			"id": "Quiz 4",
+			"title" : "Another Quiz title",
 			"state": "completed",
 			"numberOfQuestionsAttempted": 6,
 			"score": 5,
 			"questions": ["","","","","",""]
     },
     {
-			"title": "Quiz 5",
+			"id": "Quiz 5",
+			"title" : "Another Quiz title",
 			"state": "completed",
 			"numberOfQuestionsAttempted": 10,
 			"score": 7,
 			"questions": ["","","","","","","","","",""]
     },
     {
-			"title": "Quiz 6",
+			"id": "Quiz 6",
+			"title" : "Another Quiz title",
 			"state": "completed",
 			"numberOfQuestionsAttempted": 5,
 			"score": 5,
