@@ -1,36 +1,43 @@
 // Web App Development module
 // assignment 1
 // Data design for Quiz App
-// Stuart Rendall 25/03/2019
+// Stuart Rendall 28/03/2019
 
-// note that, there is no functionality to give a results summary at the end of quiz
-// e.g. identifying correct/incorrect answers, returning to icorrect questions etc.
-// and anticipated use is to progress linearly through each chosen quiz, with only
-// the option to pause and return to it later, or restart once finished.
-// the data model is adequate for this purpose.
+// Anticipated use is to progress linearly through each chosen quiz, with only
+// the options to pause and return to it later, or restart once finished. Note
+// that, there is no functionality to give a results summary at the end of quiz
+// i.e. a breakdown of correct/incorrect answers, returning to incorrect
+// questions etc.
 
 // data required for app.props
-// page: 1 of 4: selectQuiz, question, hint, result
+// page: 4 possible: selectQuiz, question, hint, result
 // quizid: current quiz (needed for question, hint and result pages)
-// currentQuestion: current question ( needed for question and hint pages)
+// currentQuestion: current question (needed for question and hint pages)
 // hintUsed: flag to allow only single use of hint page (question page only)
-const appState={
+var appState={
 	page: "quiz",
 	quizid: "Quiz 2",
 	currentQuestion: 1,
 	hintUsed: false
 }
 
-// complete data set for all quizzes
-// array of quizzes containing array of questions
-// additional user data stored regarding progress through quizzes:
-// state: indicates whether quiz has been not been started, started or completed
-// numberOfQuestionsAttempted: facilitates returning to quiz later
+// quizdata: complete data set for all quizzes
+// An array of quizzes with each quiz containing array of questions with
+// additional user data stored regarding progress.
+// quizzes: state: indicates whether quiz has been started, not started or
+// completed numberOfQuestionsAttempted: facilitates returning to quiz later
 // score: number of correct answers so far
-// (if it were expected that there may be more than one correct answer for
-// a question, this would require that 'answer' be an array of correct answers
-// for all questions)
-const quizdata =[{
+
+// (if it were expected that there may be more than one correct answer for a
+// question, this would require that 'answer:' be an array of correct answers
+// for all questions, even if there is only a single correct answer)
+
+// It may be better to separate out the variable fields (i.e. state, score and
+// progress) into a separate array or incorporate within the above 'appState'
+// variable allowing the quizzes and questions to be defined as constant and
+// allows the user progress to be recorded and stored easily.
+
+var quizdata =[{
 			"id": "Quiz 1",
 			"title" : "Shapes",
 			"state": "completed",
@@ -146,11 +153,20 @@ const quizdata =[{
 
 	]
 
-const getQuiz = (title) => {
-	return quizdata.filter((quiz)=>{
-  	return quiz.title === title
-	}, title);
-};
+// const getQuiz = (title) => {
+// 	return quizdata.filter((quiz)=>{
+//   	return quiz.id === title
+// 	}, title);
+// };
+
+const getQuiz = (title) =>{
+	for (const quiz of quizdata){
+		console.log(quiz.id)
+		if (quiz.id == title){
+			return quiz;
+		}
+	}
+}
 
 const completedQuizzes = quizdata.filter((quiz)=>{
   return quiz.state === "completed"
@@ -161,11 +177,12 @@ const remainingQuizzes = quizdata.filter((quiz)=>{
 });
 
 const titlesAndState = quizdata.map((quiz) =>{
-  return [quiz.title, quiz.state, quiz.score, quiz.questions.length]
+  return [quiz.id, quiz.title, quiz.state, quiz.score, quiz.questions.length]
 })
 
 const titlesAndStateObj = quizdata.map((quiz) =>{
 	return {
+		id:quiz.id,
 		title:quiz.title,
 		state:quiz.state,
 		correct:quiz.score,
@@ -173,9 +190,9 @@ const titlesAndStateObj = quizdata.map((quiz) =>{
 	}
 })
 
-const averageScore = completedQuizzes.reduce((acc, value) =>{
-  if (value.questions.length !=0){
-    return acc+(value.score/value.questions.length)
+const averageScore = completedQuizzes.reduce((acc, quiz) =>{
+  if (quiz.questions.length !=0){
+    return acc+(quiz.score/quiz.questions.length)
   } else {
     return null
   }
@@ -183,7 +200,7 @@ const averageScore = completedQuizzes.reduce((acc, value) =>{
 
 console.log("All Data\n", quizdata);
 console.log("\nQuiz 1 Data\n", getQuiz("Quiz 1"));
-console.log("\nQuiz 2 questions\n",getQuiz("Quiz 2")[0].questions);
+console.log("\nQuiz 2 questions\n",getQuiz("Quiz 2").questions);
 console.log("\ncompleted quizzes\n", completedQuizzes);
 console.log("\n",completedQuizzes.length, "completed quizzes");
 console.log("\n",remainingQuizzes.length, "remaining quizzes");
