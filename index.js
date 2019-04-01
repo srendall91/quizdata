@@ -153,15 +153,17 @@ var quizdata =[{
 
 	]
 
+//This returns an array containing a single quiz object
 // const getQuiz = (title) => {
 // 	return quizdata.filter((quiz)=>{
 //   	return quiz.id === title
 // 	}, title);
 // };
 
+// This returns a single quiz object
 const getQuiz = (title) =>{
 	for (const quiz of quizdata){
-		console.log(quiz.id)
+		//console.log(quiz.id)
 		if (quiz.id == title){
 			return quiz;
 		}
@@ -201,6 +203,7 @@ const averageScore = completedQuizzes.reduce((acc, quiz) =>{
 console.log("All Data\n", quizdata);
 console.log("\nQuiz 1 Data\n", getQuiz("Quiz 1"));
 console.log("\nQuiz 2 questions\n",getQuiz("Quiz 2").questions);
+console.log("\nQuiz 2 question 1\n",getQuiz("Quiz 2").questions[0]);
 console.log("\ncompleted quizzes\n", completedQuizzes);
 console.log("\n",completedQuizzes.length, "completed quizzes");
 console.log("\n",remainingQuizzes.length, "remaining quizzes");
